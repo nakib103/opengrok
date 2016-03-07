@@ -1,0 +1,16 @@
+<div style="padding-top:60px">
+<h1>Show permission</h1>
+<p id="notice"><%= notice %></p>
+<br/>
+<p>
+  <strong>Project:</strong>
+  <%= Project.find(@projectuser.project_id).projectname %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= User.find(@projectuser.user_id).username %>
+</p>
+<br/>
+<%= link_to 'Edit', edit_projectuser_path(@projectuser) %> |
+<%= link_to 'Back', projectusers_path %>

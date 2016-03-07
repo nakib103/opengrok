@@ -1,0 +1,37 @@
+<div style="padding-top:60px">
+
+<h1>Permission List</h1>
+<div class="project"> 
+<%= form_tag projectusers_path,:method=> "get" do %>
+<p class="search">
+<%= text_field_tag :search,params[:search] %>
+<%= submit_tag "search",:name => nil%>
+</p>
+<% end %>
+<table class="table table-hover">
+  <thead>
+    <tr bgcolor="#EAEAEA">
+      <th>Project</th>
+      <th>User</th>
+      <th>Show</th>
+      <th>Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+  <%= paginate @projectusers %>
+    <% @projectusers.each do |projectuser| %>
+      <tr>
+        
+        <td width="40%"><%= Project.find(projectuser.project_id).projectname %></td>
+        <td width="40%"><%= User.find(projectuser.user_id).username %></td>
+        <td><%= link_to 'Show', projectuser %></td>
+        <td><%= link_to 'Delete', projectuser, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+
+</table>
+</div>
+<br>
+
+<%= link_to 'New Projectuser', new_projectuser_path %>
